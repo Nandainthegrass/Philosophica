@@ -56,6 +56,8 @@ func PopulateDB() {
 	if err != nil {
 		log.Fatal("Error connecting to database")
 	}
+	defer db.Close()
+
 	InitStorage(db)
 	stmt, err := db.Prepare("Insert into allquotes values(?, ?, ?, ?)")
 	if err != nil {
